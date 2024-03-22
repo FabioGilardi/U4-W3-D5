@@ -12,6 +12,7 @@ public abstract class Archive {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected long id;
+    @Column(unique = true)
     protected int isbn;
     protected String title;
     @Column(name = "pages_number")

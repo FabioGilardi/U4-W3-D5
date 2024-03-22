@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "element_type")
 public abstract class Archive {
     //    ATTRIBUTES
 //    HO CREATO ANCHE UN ID IN QUANTO L'ISBN APPARTIENE AL LIBRO, MENTRE L'ID MI SERVE PER IL RICONOSCIMENTO DEL LIBRO NEL DB
@@ -22,12 +23,11 @@ public abstract class Archive {
     protected Loan loan;
 
     //    CONSTRUCTORS
-    public Archive(int isbn, String title, int pagesNumber, int publicationDate, Loan loan) {
+    public Archive(int isbn, String title, int pagesNumber, int publicationDate) {
         this.isbn = isbn;
         this.title = title;
         this.pagesNumber = pagesNumber;
         this.publicationDate = publicationDate;
-        this.loan = loan;
     }
 
     public Archive() {

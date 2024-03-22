@@ -11,8 +11,8 @@ public class Book extends Archive {
     private String genre;
 
     //    CONSTRUCTORS
-    public Book(int isbn, String title, int pagesNumber, int publicationDate, Loan loan, String author, String genre) {
-        super(isbn, title, pagesNumber, publicationDate, loan);
+    public Book(int isbn, String title, int pagesNumber, int publicationDate, String author, String genre) {
+        super(isbn, title, pagesNumber, publicationDate);
         this.author = author;
         this.genre = genre;
     }

@@ -22,11 +22,10 @@ public class User {
     private List<Loan> loanList;
 
     //    CONSTRUCTOR
-    public User(String name, String surname, LocalDate birthDate, List<Loan> loanList) {
+    public User(String name, String surname, LocalDate birthDate) {
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
-        this.loanList = loanList;
     }
 
     public User() {

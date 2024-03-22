@@ -30,9 +30,9 @@ public class Loan {
     private User user;
 
     //    CONSTRUCTORS
-    public Loan(LocalDate loanStart, LocalDate loanEnd, LocalDate effectiveLoanEnd, Archive element, User user) {
+    public Loan(LocalDate loanStart, LocalDate effectiveLoanEnd, Archive element, User user) {
         this.loanStart = loanStart;
-        this.loanEnd = loanEnd;
+        setLoanEnd(loanStart);
         this.effectiveLoanEnd = effectiveLoanEnd;
         this.element = element;
         this.user = user;

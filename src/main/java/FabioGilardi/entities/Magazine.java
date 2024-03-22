@@ -15,8 +15,8 @@ public class Magazine extends Archive {
     private Periodicity periodicity;
 
     //    CONSTRUCTORS
-    public Magazine(int isbn, String title, int pagesNumber, int publicationDate, Loan loan, Periodicity periodicity) {
-        super(isbn, title, pagesNumber, publicationDate, loan);
+    public Magazine(int isbn, String title, int pagesNumber, int publicationDate, Periodicity periodicity) {
+        super(isbn, title, pagesNumber, publicationDate);
         this.periodicity = periodicity;
     }
 

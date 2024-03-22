@@ -11,6 +11,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -86,7 +87,11 @@ public class Application {
         if (expiredLoans.isEmpty()) System.err.println("All books have been returned in time");
         else expiredLoans.forEach(System.out::println);
 
+
         em.close();
         emf.close();
+
+        System.out.println("Created By Fabio Gilardi " + LocalDate.now().getYear());
+        
     }
 }

@@ -76,4 +76,11 @@ public class ArchiveDAO {
         return query.getResultList();
     }
 
+    //    RICERCA PER TITOLO
+    public List<Archive> findByTitle(String title) {
+        TypedQuery<Archive> query = em.createQuery("SELECT a FROM Archive a WHERE LOWER(a.title) LIKE LOWER(:title)", Archive.class);
+        query.setParameter("title", "%" + title + "%");
+        return query.getResultList();
+    }
+
 }

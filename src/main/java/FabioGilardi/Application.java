@@ -59,7 +59,9 @@ public class Application {
 
 //        archiveDAO.findByAge(2018).forEach(System.out::println);
 
-        archiveDAO.findByAuthor("elsa bellini").forEach(System.out::println);
+//        archiveDAO.findByAuthor("elsa bellini").forEach(System.out::println);
+
+//        archiveDAO.findByTitle("door").forEach(System.out::println);
 
         em.close();
         emf.close();

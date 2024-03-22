@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Table
 public abstract class Archive {
     //    ATTRIBUTES
+//    HO CREATO ANCHE UN ID IN QUANTO L'ISBN APPARTIENE AL LIBRO, MENTRE L'ID MI SERVE PER IL RICONOSCIMENTO DEL LIBRO NEL DB
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected long id;
@@ -17,7 +18,8 @@ public abstract class Archive {
     protected int publicationDate;
 
     //    CONSTRUCTORS
-    public Archive(String title, int pagesNumber, int publicationDate) {
+    public Archive(int isbn, String title, int pagesNumber, int publicationDate) {
+        this.isbn = isbn;
         this.title = title;
         this.pagesNumber = pagesNumber;
         this.publicationDate = publicationDate;

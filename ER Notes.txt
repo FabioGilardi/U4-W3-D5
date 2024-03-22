@@ -1,3 +1,4 @@
 Ho aggiunto sia Books che Magazines nel diagramma delle relazioni
 perchè non avevo ancora deciso il tipo di inheritance con cui generare
-le tabelle delle classi figlie
+le tabelle delle classi figlie.
+Il diagramma l'ho creato per primo ma mi sono dimenticato di inserirlo nella cartella.

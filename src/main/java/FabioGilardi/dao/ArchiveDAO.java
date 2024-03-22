@@ -96,7 +96,7 @@ public class ArchiveDAO {
 
     //    RICERCA LIBRI OLTRE LA SCADENZA
     public List<Loan> findExpiredLoans() {
-        TypedQuery<Loan> query = em.createQuery("SELECT l FROM Loan l WHERE EXTRACT(MONTH FROM l.effectiveLoanEnd) > EXTRACT(MONTH FROM l.loanEnd) OR EXTRACT(DAY FROM l.effectiveLoanEnd) > EXTRACT(DAY FROM l.loanEnd)", Loan.class);
+        TypedQuery<Loan> query = em.createQuery("SELECT l FROM Loan l WHERE EXTRACT(YEAR FROM l.effectiveLoanEnd) > EXTRACT(YEAR FROM l.loanEnd) OR EXTRACT(MONTH FROM l.effectiveLoanEnd) > EXTRACT(MONTH FROM l.loanEnd) OR EXTRACT(DAY FROM l.effectiveLoanEnd) > EXTRACT(DAY FROM l.loanEnd)", Loan.class);
         return query.getResultList();
     }
 

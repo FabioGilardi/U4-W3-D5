@@ -84,12 +84,12 @@ public class ArchiveDAO {
         return query.getResultList();
     }
 
-//    public List<Archive> findByUserCard(int card) {
-//
-//        TypedQuery<Archive> query = em.createQuery("SELECT a FROM Archive a JOIN Loan l ON l.element = a.id JOIN User u ON u.tesserNumber = l.user WHERE u.tesserNumber = :card", Archive.class);
-//        query.setParameter("card", card);
-//        return query.getResultList();
-//    }
+    //    RICERCA UTENTE PER USER CARD
+    public List<Archive> findByUserCard(int card) {
+        TypedQuery<Archive> query = em.createQuery("SELECT a FROM Archive a JOIN Loan l ON l.id = a.loan.id WHERE l.user.tesserNumber = :card", Archive.class);
+        query.setParameter("card", card);
+        return query.getResultList();
+    }
 
     //    RICERCA LIBRI OLTRE LA SCADENZA
     public List<Loan> findExpiredLoans() {

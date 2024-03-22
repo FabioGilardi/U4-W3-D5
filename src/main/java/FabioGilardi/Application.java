@@ -51,16 +51,25 @@ public class Application {
 //            }
 //        }
 
-//        System.out.println(archiveDAO.findByIsbn(16388));
+        //    RICERCA DI UN ELEMENTO CON ISBN
+        System.out.println(archiveDAO.findByIsbn(73993));
 
+        //    ELIMINAZIONE DI UN ELEMENTO CON ISBN
 //        archiveDAO.deleteByIsbn(16388);
 
-//        archiveDAO.findByAge(2018).forEach(System.out::println);
+        //    RICERCA PER ANNO DI PUBBLICAZIONE
+        archiveDAO.findByAge(2020).forEach(System.out::println);
 
-//        archiveDAO.findByAuthor("elsa bellini").forEach(System.out::println);
+        //    RICERCA PER AUTORE
+        archiveDAO.findByAuthor("oreste ferraro").forEach(System.out::println);
 
-//        archiveDAO.findByTitle("door").forEach(System.out::println);
+        //    RICERCA PER TITOLO
+        archiveDAO.findByTitle("wild").forEach(System.out::println);
 
+        //    RICERCA UTENTE PER USER CARD
+        archiveDAO.findByUserCard(7).forEach(System.out::println);
+
+        //    RICERCA LIBRI OLTRE LA SCADENZA
         archiveDAO.findExpiredLoans().forEach(System.out::println);
 
         em.close();

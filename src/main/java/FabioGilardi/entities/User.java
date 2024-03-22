@@ -10,10 +10,10 @@ import java.util.List;
 public class User {
 
     //    ATTRIBUTES
+//    HO PENSATO CHE IL TESSER NUMBER CORRISPONDA ALL'ID DELL'UTENTE IN QUANTO LA TESSERE VIENE ASSEGNATA ALLA REGISTRAZIONE DELL'UTENTE
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long tesserNumber;
-
     private String name;
     private String surname;
     @Column(name = "birth_date")
@@ -77,6 +77,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", birthDate=" + birthDate +
+                ", loanList=" + loanList +
                 '}';
     }
 }

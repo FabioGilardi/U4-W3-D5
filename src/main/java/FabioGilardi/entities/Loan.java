@@ -85,7 +85,6 @@ public class Loan {
                 ", loanEnd=" + loanEnd +
                 ", effectiveLoanEnd=" + effectiveLoanEnd +
                 ", element=" + element +
-                ", user=" + user +
                 '}';
     }
 }

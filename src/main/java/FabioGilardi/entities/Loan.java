@@ -19,9 +19,8 @@ public class Loan {
     @Column(name = "effective_loan_end")
     private LocalDate effectiveLoanEnd;
 
-    //    HO SCELTO UNA RELAZIONE ONE TO ONE PERCHE' IL PRESTITO E' PUO' AVERE UN SOLO ELEMENTO(DA CONSEGNA: LIBRO O RIVISTA), E IL LIBRO PUO APPARTENERE AD UN SINGOLO PRESTITO PER VOLTA(LO STESSO LIBRO NON PUO' ESSERE PRESTATO A PIU' UTENTI CONTEMPORANEAMENTE)
-    @OneToOne
-    @JoinColumn(name = "element-id")
+    //    HO SCELTO UNA RELAZIONE ONE TO ONE PERCHE' IL PRESTITO PUO' AVERE UN SOLO ELEMENTO(DA CONSEGNA: LIBRO O RIVISTA), E IL LIBRO PUO APPARTENERE AD UN SINGOLO PRESTITO PER VOLTA(LO STESSO LIBRO NON PUO' ESSERE PRESTATO A PIU' UTENTI CONTEMPORANEAMENTE)
+    @OneToOne(mappedBy = "loan")
     private Archive element;
 
     //    HO SCELTO UNA RELAZIONE MANY TO ONE PERCHE' UN UTENTE PUO' AVERE PIU' PRESTITI MA UN PRESTITO SI RIFERISCE AL SINGOLO UTENTE
@@ -30,11 +29,10 @@ public class Loan {
     private User user;
 
     //    CONSTRUCTORS
-    public Loan(LocalDate loanStart, LocalDate effectiveLoanEnd, Archive element, User user) {
+    public Loan(LocalDate loanStart, LocalDate effectiveLoanEnd, User user) {
         this.loanStart = loanStart;
         setLoanEnd(loanStart);
         this.effectiveLoanEnd = effectiveLoanEnd;
-        this.element = element;
         this.user = user;
     }
 
@@ -86,6 +84,7 @@ public class Loan {
                 ", loanStart=" + loanStart +
                 ", loanEnd=" + loanEnd +
                 ", effectiveLoanEnd=" + effectiveLoanEnd +
+                ", element=" + element +
                 ", user=" + user +
                 '}';
     }

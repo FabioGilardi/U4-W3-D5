@@ -1,10 +1,14 @@
 package FabioGilardi.dao;
 
 import FabioGilardi.entities.Archive;
+import FabioGilardi.entities.Book;
 import FabioGilardi.exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+
+import java.util.List;
 
 public class ArchiveDAO {
     //    ATTRIBUTES
@@ -47,7 +51,29 @@ public class ArchiveDAO {
         return query.getSingleResult();
     }
 
-//    ELIMINAZIONE DI UN ELEMENTO CON ISBN
-    
+    //    ELIMINAZIONE DI UN ELEMENTO CON ISBN
+    public void deleteByIsbn(int isbn) {
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        Query query = em.createQuery("DELETE FROM Archive a WHERE a.isbn = :isbn");
+        query.setParameter("isbn", isbn);
+        query.executeUpdate();
+        transaction.commit();
+        System.out.println("The element " + isbn + " has been deleted correctly");
+    }
+
+    //    RICERCA PER ANNO DI PUBBLICAZIONE
+    public List<Archive> findByAge(int age) {
+        TypedQuery<Archive> query = em.createQuery("SELECT a FROM Archive a WHERE a.publicationDate = :age", Archive.class);
+        query.setParameter("age", age);
+        return query.getResultList();
+    }
+
+    //    RICERCA PER AUTORE
+    public List<Book> findByAuthor(String author) {
+        TypedQuery<Book> query = em.createQuery("SELECT b FROM Archive b WHERE LOWER(b.author) = LOWER(:author)", Book.class);
+        query.setParameter("author", author);
+        return query.getResultList();
+    }
 
 }

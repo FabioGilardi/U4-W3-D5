@@ -19,15 +19,17 @@ public abstract class Archive {
     @Column(name = "publication_date")
     protected int publicationDate;
 
-    @OneToOne(mappedBy = "element")
+    @OneToOne
+    @JoinColumn(name = "loan_id")
     protected Loan loan;
 
     //    CONSTRUCTORS
-    public Archive(int isbn, String title, int pagesNumber, int publicationDate) {
+    public Archive(int isbn, String title, int pagesNumber, int publicationDate, Loan loan) {
         this.isbn = isbn;
         this.title = title;
         this.pagesNumber = pagesNumber;
         this.publicationDate = publicationDate;
+        this.loan = loan;
     }
 
     public Archive() {
@@ -81,7 +83,6 @@ public abstract class Archive {
                 ", title='" + title + '\'' +
                 ", pagesNumber=" + pagesNumber +
                 ", publicationDate=" + publicationDate +
-                ", loan=" + loan +
                 '}';
     }
 }

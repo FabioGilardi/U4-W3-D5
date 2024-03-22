@@ -4,6 +4,7 @@ import FabioGilardi.entities.Archive;
 import FabioGilardi.exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
 
 public class ArchiveDAO {
     //    ATTRIBUTES
@@ -38,4 +39,15 @@ public class ArchiveDAO {
         transaction.commit();
         System.out.println("The archive " + archiveFound.getIsbn() + " has been deleted correctly");
     }
+
+    //    RICERCA DI UN ELEMENTO CON ISBN
+    public Archive findByIsbn(int isbn) {
+        TypedQuery<Archive> query = em.createQuery("SELECT a FROM Archive a WHERE a.isbn = :isbn", Archive.class);
+        query.setParameter("isbn", isbn);
+        return query.getSingleResult();
+    }
+
+//    ELIMINAZIONE DI UN ELEMENTO CON ISBN
+    
+
 }

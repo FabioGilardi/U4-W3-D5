@@ -26,7 +26,7 @@ public class Application {
         UserDAO userDAO = new UserDAO(em);
 
 //        POPOLAMENTO RANDOMICO DEL DATABASE
-
+//
 //        for (int i = 0; i < 20; i++) {
 //            userDAO.saveOnDB(new User(faker.name().firstName(), faker.name().lastName(), LocalDate.of(random.nextInt(1968, 2002),
 //                    random.nextInt(1, 13),
@@ -35,7 +35,7 @@ public class Application {
 //
 //        for (int i = 0; i < 20; i++) {
 //            if (random.nextInt(1, 3) % 2 == 0) {
-//                archiveDAO.saveOnDB(new Book(faker.book().hashCode(), faker.book().title(), random.nextInt(50, 501), random.nextInt(1968, 2024)
+//                archiveDAO.saveOnDB(new Book(random.nextInt(10000, 100000), faker.book().title(), random.nextInt(50, 501), random.nextInt(1968, 2024)
 //                        , faker.book().author(), faker.book().genre()));
 //            } else {
 //                List<Periodicity> periodicityList = new ArrayList<>();
@@ -43,7 +43,7 @@ public class Application {
 //                periodicityList.add(Periodicity.MONTHLY);
 //                periodicityList.add(Periodicity.SEMESTRAL);
 //                int randomPeriodicity = random.nextInt(0, 3);
-//                archiveDAO.saveOnDB(new Magazine(faker.book().hashCode(), faker.book().title(), random.nextInt(50, 501), random.nextInt(1968, 2024), periodicityList.get(randomPeriodicity)));
+//                archiveDAO.saveOnDB(new Magazine(random.nextInt(10000, 100000), faker.book().title(), random.nextInt(50, 501), random.nextInt(1968, 2024), periodicityList.get(randomPeriodicity)));
 //            }
 //        }
 //
@@ -53,6 +53,7 @@ public class Application {
 //                    random.nextInt(1, 29)), archiveDAO.findById(i + 1), userDAO.findById(random.nextInt(2, 21))));
 //        }
 
+        System.out.println(archiveDAO.findByIsbn(21596));
 
         em.close();
         emf.close();

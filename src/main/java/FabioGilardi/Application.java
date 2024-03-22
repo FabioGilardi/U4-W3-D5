@@ -34,9 +34,7 @@ public class Application {
 //        }
 //
 //        for (int i = 0; i < 20; i++) {
-//            loanDAO.saveOnDB(new Loan(LocalDate.now(), LocalDate.of(2024,
-//                    random.nextInt(3, 5),
-//                    random.nextInt(1, 29)), userDAO.findById(random.nextInt(2, 21))));
+//            loanDAO.saveOnDB(new Loan(LocalDate.now(), LocalDate.now().plusDays(random.nextInt(20, 41)), userDAO.findById(random.nextInt(2, 21))));
 //        }
 //
 //        for (int i = 0; i < 20; i++) {
@@ -62,6 +60,8 @@ public class Application {
 //        archiveDAO.findByAuthor("elsa bellini").forEach(System.out::println);
 
 //        archiveDAO.findByTitle("door").forEach(System.out::println);
+
+        archiveDAO.findExpiredLoans().forEach(System.out::println);
 
         em.close();
         emf.close();

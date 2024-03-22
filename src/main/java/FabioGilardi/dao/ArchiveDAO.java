@@ -2,6 +2,7 @@ package FabioGilardi.dao;
 
 import FabioGilardi.entities.Archive;
 import FabioGilardi.entities.Book;
+import FabioGilardi.entities.Loan;
 import FabioGilardi.exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -82,5 +83,19 @@ public class ArchiveDAO {
         query.setParameter("title", "%" + title + "%");
         return query.getResultList();
     }
+
+//    public List<Archive> findByUserCard(int card) {
+//
+//        TypedQuery<Archive> query = em.createQuery("SELECT a FROM Archive a JOIN Loan l ON l.element = a.id JOIN User u ON u.tesserNumber = l.user WHERE u.tesserNumber = :card", Archive.class);
+//        query.setParameter("card", card);
+//        return query.getResultList();
+//    }
+
+    //    RICERCA LIBRI OLTRE LA SCADENZA
+    public List<Loan> findExpiredLoans() {
+        TypedQuery<Loan> query = em.createQuery("SELECT l FROM Loan l WHERE EXTRACT(MONTH FROM l.effectiveLoanEnd) > EXTRACT(MONTH FROM l.loanEnd) OR EXTRACT(DAY FROM l.effectiveLoanEnd) > EXTRACT(DAY FROM l.loanEnd)", Loan.class);
+        return query.getResultList();
+    }
+
 
 }

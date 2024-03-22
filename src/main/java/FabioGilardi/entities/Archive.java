@@ -20,6 +20,7 @@ public abstract class Archive {
     @Column(name = "publication_date")
     protected int publicationDate;
 
+    //    HO SCELTO UNA RELAZIONE ONE TO ONE PERCHE' IL PRESTITO PUO' AVERE UN SOLO ELEMENTO(DA CONSEGNA: LIBRO O RIVISTA), E IL LIBRO PUO APPARTENERE AD UN SINGOLO PRESTITO PER VOLTA(LO STESSO LIBRO NON PUO' ESSERE PRESTATO A PIU' UTENTI CONTEMPORANEAMENTE)
     @OneToOne
     @JoinColumn(name = "loan_id")
     protected Loan loan;

@@ -3,11 +3,15 @@ package FabioGilardi;
 import FabioGilardi.dao.ArchiveDAO;
 import FabioGilardi.dao.LoanDAO;
 import FabioGilardi.dao.UserDAO;
+import FabioGilardi.entities.Archive;
+import FabioGilardi.entities.Book;
+import FabioGilardi.entities.Loan;
 import com.github.javafaker.Faker;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
@@ -51,26 +55,36 @@ public class Application {
 //            }
 //        }
 
-        //    RICERCA DI UN ELEMENTO CON ISBN
+        //    RICERCA DI UN ELEMENTO CON ISBN (GESTIONE DELL'ERRORE TRAMITE EXCEPTION IN DAO)
         System.out.println(archiveDAO.findByIsbn(73993));
 
         //    ELIMINAZIONE DI UN ELEMENTO CON ISBN
-//        archiveDAO.deleteByIsbn(16388);
+        archiveDAO.deleteByIsbn(1);
 
         //    RICERCA PER ANNO DI PUBBLICAZIONE
-        archiveDAO.findByAge(2020).forEach(System.out::println);
+        List<Archive> archivesByYear = archiveDAO.findByAge(2014);
+        if (archivesByYear.isEmpty()) System.err.println("No element has been found in this year");
+        else archivesByYear.forEach(System.out::println);
 
         //    RICERCA PER AUTORE
-        archiveDAO.findByAuthor("oreste ferraro").forEach(System.out::println);
+        List<Book> booksByAuthor = archiveDAO.findByAuthor("bobby");
+        if (booksByAuthor.isEmpty()) System.err.println("No element has been found for this author");
+        else booksByAuthor.forEach(System.out::println);
 
         //    RICERCA PER TITOLO
-        archiveDAO.findByTitle("wild").forEach(System.out::println);
+        List<Archive> archivesByTitle = archiveDAO.findByTitle("wild");
+        if (archivesByTitle.isEmpty()) System.err.println("No element has been found with this title");
+        else archivesByTitle.forEach(System.out::println);
 
         //    RICERCA UTENTE PER USER CARD
-        archiveDAO.findByUserCard(7).forEach(System.out::println);
+        List<Archive> archivesByUserCard = archiveDAO.findByUserCard(25);
+        if (archivesByUserCard.isEmpty()) System.err.println("No element has been found for this user");
+        else archivesByUserCard.forEach(System.out::println);
 
         //    RICERCA LIBRI OLTRE LA SCADENZA
-        archiveDAO.findExpiredLoans().forEach(System.out::println);
+        List<Loan> expiredLoans = archiveDAO.findExpiredLoans();
+        if (expiredLoans.isEmpty()) System.err.println("All books have been returned in time");
+        else expiredLoans.forEach(System.out::println);
 
         em.close();
         emf.close();

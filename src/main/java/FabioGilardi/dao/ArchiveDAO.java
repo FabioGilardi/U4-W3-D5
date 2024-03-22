@@ -4,10 +4,7 @@ import FabioGilardi.entities.Archive;
 import FabioGilardi.entities.Book;
 import FabioGilardi.entities.Loan;
 import FabioGilardi.exceptions.NotFoundException;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -47,9 +44,15 @@ public class ArchiveDAO {
 
     //    RICERCA DI UN ELEMENTO CON ISBN
     public Archive findByIsbn(int isbn) {
-        TypedQuery<Archive> query = em.createQuery("SELECT a FROM Archive a WHERE a.isbn = :isbn", Archive.class);
-        query.setParameter("isbn", isbn);
-        return query.getSingleResult();
+        Archive book = null;
+        try {
+            TypedQuery<Archive> query = em.createQuery("SELECT a FROM Archive a WHERE a.isbn = :isbn", Archive.class);
+            query.setParameter("isbn", isbn);
+            book = query.getSingleResult();
+        } catch (NoResultException e) {
+            System.err.println("No element has been found with this ISBN!");
+        }
+        return book;
     }
 
     //    ELIMINAZIONE DI UN ELEMENTO CON ISBN

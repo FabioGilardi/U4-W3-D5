@@ -2,13 +2,16 @@ package FabioGilardi.entities;
 
 import FabioGilardi.enums.Periodicity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 
 @Entity
 @Table
 public class Magazine extends Archive {
-    
+
     //    ATTRIBUTES
+    @Enumerated(EnumType.STRING)
     private Periodicity periodicity;
 
     //    CONSTRUCTORS
